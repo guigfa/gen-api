@@ -1,9 +1,11 @@
 import { Observable } from "rxjs";
+import { Lesson } from "../lesson.entity";
+import { AjaxResponse } from "src/shared/models/response.model";
 
 export interface LessonService {
-    findAll(query: any): Observable<any>;
-    findOne(id: string): Observable<any>;
-    create(createLessonDto: any, couseId: string): Observable<any>;
-    update(id: string, updateLessonDto: any): Observable<any>;
-    remove(id: string): Observable<any>;
+    findAll(query: Partial<Lesson>): Observable<Lesson[]>;
+    findOne(id: string): Observable<Lesson>;
+    create(createLessonDto: Lesson, couseId: string): Observable<AjaxResponse>;
+    update(id: string, updateLessonDto: Partial<Lesson>): Observable<AjaxResponse>;
+    delete(id: string): Observable<AjaxResponse>;
 }

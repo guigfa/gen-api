@@ -1,32 +1,30 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { LessonServiceImpl } from "../services/lessonImpl.service";
+import { AjaxResponse } from "src/shared/models/response.model";
+import { Observable } from "rxjs";
+import { Lesson } from "../lesson.entity";
 
 @Controller("lessons")
 export class LessonsController {
     constructor(private service: LessonServiceImpl) {}
 
     @Get()
-    async findAll(@Query() query: any) {
-        return await this.service.findAll(query);
-    }
-
-    @Get(":id")
-    async findById(@Param("id") id: string) {
-        return await this.service.findOne(id);
+    findAll(@Query() query: Partial<Lesson>): Observable<Lesson[]> {
+        return this.service.findAll(query);
     }
 
     @Post()
-    async create(@Body() createLessonDto: any, @Body("courseId") courseId: string) {
-        return await this.service.create(createLessonDto, courseId);
+    create(@Body() createLessonDto: any, @Body("courseId") courseId: string): Observable<AjaxResponse> {
+        return this.service.create(createLessonDto, courseId);
     }
 
     @Put(":id")
-    async update(@Param("id") id: string, @Body() updateLessonDto: any) {
-        return await this.service.update(id, updateLessonDto);
+    update(@Param("id") id: string, @Body() updateLessonDto: any): Observable<AjaxResponse> {
+        return this.service.update(id, updateLessonDto);
     }
 
     @Delete(":id")
-    async remove(@Param("id") id: string) {
-        return await this.service.remove(id);
+    remove(@Param("id") id: string): Observable<AjaxResponse> {
+        return this.service.delete(id);
     }
 }

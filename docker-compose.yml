@@ -3,12 +3,12 @@ version: '3.8'
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: my-sqlserver-container
+    container_name: GEN-API
     environment:
       SA_PASSWORD: 'StrongPass!'
       ACCEPT_EULA: 'Y'
     ports:
-      - "1433:1433"
+      - "1543:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
 

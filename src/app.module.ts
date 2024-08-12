@@ -10,7 +10,7 @@ import { CourseModule } from './main/courses/course.module';
     TypeOrmModule.forRoot({
       type: 'mssql',
       host: 'localhost',
-      port: 1433,
+      port: 1543,
       username: 'sa',
       password: 'StrongPass!',
       database: 'master',
