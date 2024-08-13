@@ -1,73 +1,54 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Visão Geral
+## Aplicação NestJS para a API de busca e cadastro de cursos e aulas para o Teste Técnico da GEN.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Requisitos
+- Docker
+- DBeaver (ou outra ferramenta de administração de banco de dados SQL Server)
+- IDE de sua preferência
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Configuração
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+### 1. Clone o projeto
+- Execute os seguites comandos no seu terminal:
+```
+    git clone https://github.com/guigfa/gen-api.git
+    cd gen-api
 ```
 
-## Running the app
+### 2. Subir o Banco de Dados
+- Inicie os serviços do Docker executando o comando:
 
-```bash
-# development
-$ npm run start
+```
+docker-compose up -d
+```
+- Isso iniciará o contêiner SQL Server em segundo plano.
 
-# watch mode
-$ npm run start:dev
+### 3. Conectar ao Banco de Dados com o DBeaver
 
-# production mode
-$ npm run start:prod
+- Abra o DBeaver e clique em Nova Conexão (ou New Connection).
+- Selecione SQL Server como o tipo de banco de dados e clique em Avançar (ou Next).
+- Preencha os seguintes campos:
+```
+Host: localhost
+Porta: 1543
+Usuário: sa
+Senha: StrongPass!
 ```
 
-## Test
+- Clique em Testar Conexão para garantir que a conexão está funcionando.
+- Clique em Concluir (ou Finish) para salvar a conexão.
 
-```bash
-# unit tests
-$ npm run test
+### 5. Subir a Aplicação NestJS
 
-# e2e tests
-$ npm run test:e2e
+- Instale as dependências do projeto:
 
-# test coverage
-$ npm run test:cov
+```
+npm install
 ```
 
-## Support
+Para iniciar a aplicação, execute o comando:
+```
+npm run start
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+### A aplicação estará disponível em http://localhost:3000.
