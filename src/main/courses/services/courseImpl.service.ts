@@ -66,18 +66,25 @@ export class CourseServiceImpl implements CourseService {
         );
     }
 
-    update(id: string, updateCourseDto: any): Observable<AjaxResponse> {
+    update(id: string, updateCourseDto: Partial<Course>): Observable<AjaxResponse> {
         return from(this.repository.update(id, updateCourseDto)).pipe(
-            switchMap(() =>
-                of({
-                    message: 'Course updated successfully', data: updateCourseDto.map(course => {
-                        delete course.id;
-                        return course;
-                    }), status: 200
-                })
-            ),
+            switchMap((result) => {
+                if (result.affected === 0) {
+                    throw new NotFoundException(`Course with ID ${id} not found.`);
+                }
+                return of({
+                    message: 'Course updated successfully',
+                    data: updateCourseDto,
+                    status: 200,
+                });
+            }),
             catchError((error) => {
-                throw new InternalServerErrorException('An error occurred while updating the course.');
+                console.log(error);
+                if (error instanceof NotFoundException) {
+                    throw error; 
+                } else {
+                    throw new InternalServerErrorException('An error occurred while updating the course.');
+                }
             })
         );
     }
